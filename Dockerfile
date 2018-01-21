@@ -17,8 +17,8 @@ RUN echo 'python:password' | chpasswd
 RUN mkdir -p ${APP_DIR} && \
     chown -R python:python ${APP_DIR}
 
-ADD docker-entrypoint.sh ${APP_DIR}/docker-entrypoint.sh
-RUN chown python:python ${APP_DIR}/docker-entrypoint.sh
+ADD docker-entrypoint.sh /home/python/docker-entrypoint.sh
+RUN chown python:python /home/python/docker-entrypoint.sh
 
 ADD .bashrc /home/python/.bashrc
 RUN chown python:python /home/python/.bashrc
@@ -29,4 +29,4 @@ WORKDIR ${APP_DIR}
 
 EXPOSE 8000
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["/home/python/docker-entrypoint.sh"]
